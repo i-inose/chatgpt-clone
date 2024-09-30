@@ -22,20 +22,18 @@ import TranslationInput from '~/components/TranslationInput.vue'
 // 翻訳メッセージのリスト
 const translationMessages = ref([])
 
+// useTranslateからtranslateToEnglishを取得
+const { translateToEnglish } = useTranslate()
+
 const handleTranslation = async (message) => {
   // 日本語のメッセージを追加
   translationMessages.value.push({ text: message, isUser: true })
 
-  // APIを使って英語に翻訳する処理 (ここでFirebaseのクラウド関数や外部APIを呼ぶ)
+  // APIを使って英語に翻訳する処理
   const translatedText = await translateToEnglish(message)
 
   // 翻訳結果を追加
   translationMessages.value.push({ text: translatedText, isUser: false })
-}
-
-// 仮の翻訳関数（後で実際の翻訳APIに置き換え）
-const translateToEnglish = async (text) => {
-  return "This is the translated text."
 }
 </script>
 
